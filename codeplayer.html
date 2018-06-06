@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CodePlayer</title>
+    <link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC" rel="stylesheet">
+    <script type="text/javascript" src="jquery-3.3.1.min.js"> </script>
+    <script src="jquery-ui/jquery-ui.js"></script>
+    <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
+    <style type="text/css">
+    
+    
+      html,body{
+            
+            font-family: 'Bowlby One SC', cursive;
+            margin:0;
+            padding:0;
+           
+           
+        }
+        
+        #titlebar{
+            position: relative;
+            height:80px;
+           padding:5px;
+            top:-20px;
+            background-color:#36322F;
+            color:white;
+            margin-bottom: 0px;
+        }
+        #title{
+            
+            font-style: italic;
+            position: relative;
+            top:5px;
+            float:left;
+            
+        }
+        .buttons{
+            
+            text-align: center;
+            position: relative;
+            top:30px;
+            left:-20px;
+           
+        }
+        #html{
+            background-color: white;
+            font-family: 'Bowlby One SC', cursive;
+            outline:none;
+        }
+       
+        #javascript{
+            background-color: white;
+            font-family: 'Bowlby One SC', cursive;
+            outline:none;
+        }
+        #css{
+            background-color: white;
+            font-family: 'Bowlby One SC', cursive;
+            outline:none;
+        }
+        #output{
+            background-color: white;
+            font-family: 'Bowlby One SC', cursive;
+            outline:none;
+        }
+        
+        textarea{
+            
+            background-color:#EEEBEC;
+            position:relative;
+            margin:0 auto;
+            padding:10px;
+            width:50%;;
+            height:800px;
+            top:-20px;
+            font:black;
+            font-style:italic;
+            font-weight: bold;
+            font-size: 130%;
+            resize:none;
+            float:left; 
+            border-right: 2px black solid;
+        }
+      
+       ::placeholder{
+            
+            text-align: center;
+            color:black;
+           font-style: italic;
+           margin:5px;
+           font-size: 200%;
+               
+        }
+        
+        #outputtextarea{
+            
+            width:298px;
+            background-color: red;
+            
+            
+        }
+        
+        #outputpanel{
+            
+        position: relative;
+        margin:0px;
+        width:48%;
+        border:none;
+        top:-20px;
+        background-color: grey;
+        color:black;
+        font-size:130%;
+        
+        }
+        .hidden{
+            display:none;
+            
+        }
+        
+        #htmltextarea{
+            
+            
+        }
+        
+        #javascripttextarea{
+            
+            background-color: bisque;
+        }
+        #csstextarea{
+            background-color: burlywood;
+        }
+        #outputpanelarea{
+                background-color: mistyrose;
+        
+        }
+        #moto{
+            font-size:300%;
+            font-style: italic;
+            text-align: center;;
+            position:relative;
+            left:400px;
+            top:200px;
+        }
+       
+    </style>
+    
+    
+    
+</head>
+    
+<body>
+    <div id="titlebar">
+       <h2 id="title">CODEPLAYER</h2>
+        <div class="buttons">
+        <button id="html">HTML</button>
+        <button id="javascript">JAVASCRIPT</button>
+        <button id="css">CSS</button>
+        <button id="output">OUTPUT</button>
+        </div>
+    </div>
+     <span id="moto">Learn to Code</span>
+    
+    <div id="bodycontainer">
+       
+        <textarea id="htmltextarea" placeholder="write your code here" class="hidden"></textarea>
+         <textarea id="javascripttextarea" placeholder="write your code here" class="hidden"></textarea>
+          <textarea id="csstextarea" placeholder="write your code here" class="hidden"></textarea>
+        <iframe id="outputpanel" class="hidden" placeholder="Output s"></iframe>
+    </div>
+    
+    <script type="text/javascript">
+    var showing=0;        
+        $(function(){
+        
+            $("button").button();
+            $("#html").hover(function(){
+                
+                $("#html").css("background-color","#EEEAEB");
+            },function(){
+                $(this).css("background-color","");
+            })
+            $("#javascript").hover(function(){
+                
+                $("#javascript").css("background-color","#FFE7BF");
+            },function(){
+                $(this).css("background-color","");
+            })
+            $("#css").hover(function(){
+                
+                $("#css").css("background-color","#E1BC7F");
+            },function(){
+                $(this).css("background-color","");
+            })
+              $("#output").hover(function(){
+                
+                $("#output").css("background-color","#7F7F7F");
+            },function(){
+                $(this).css("background-color","");
+            })
+            $("button").click(function(event){
+                
+                event.preventDefault();
+            }) 
+            
+            
+            
+            $("textarea").height($(window).height()-$("#titlebar").height()-20);
+            $("#outputpanel").height($(window).height()-$("#titlebar").height());
+            
+    })
+        $(document).ready(function(){
+             $("#html").click(function(){
+            
+           
+           if($('#htmltextarea').css('display') == 'none')
+            {
+                    showing++;
+            }     
+            else
+                showing--;
+          
+                  $("textarea").width($(window).width()/showing -25);
+                 $("#outputpanel").width($(window).width()/showing );
+                 $("#htmltextarea").toggle();
+                  if(showing!=0)
+       {
+         
+           $("#moto").hide();
+       }
+                  else
+                      $("#moto").show();
+        });
+            $("#javascript").click(function(){
+            
+                if($('#javascripttextarea').css('display') == 'none')
+            {
+                    showing++;
+            }     
+            else
+                showing--;
+          
+                 $("textarea").width($(window).width()/showing - 25);
+                $("#outputpanel").width($(window).width()/showing );
+            $("#javascripttextarea").toggle();
+                 if(showing!=0)
+       {
+         
+           $("#moto").hide();
+       }
+                 else
+                      $("#moto").show();
+          
+        });
+              $("#css").click(function(){
+            
+            
+                  if($('#csstextarea').css('display') == 'none')
+            {
+                    showing++;
+            }     
+            else
+                showing--;
+          
+                   $("textarea").width($(window).width()/showing - 25);
+                  $("#outputpanel").width($(window).width()/showing );
+            $("#csstextarea").toggle();
+                   if(showing!=0)
+       {
+         
+           $("#moto").hide();
+       }
+                   else
+                      $("#moto").show();
+           
+        });
+              $("#output").click(function(){
+            
+           if($('#outputpanel').css('display') == 'none')
+            {
+                    showing++;
+            }     
+            else
+                showing--;
+        
+                  $("textarea").width($(window).width()/showing - 25);
+                  $("#outputpanel").width($(window).width()/showing);
+            $("#outputpanel").toggle();
+                        if(showing!=0)
+       {
+         
+           $("#moto").hide();
+       }
+                  else
+                      $("#moto").show();
+            
+        });
+      
+           
+        })
+        
+        
+/*        $("#html").click(function(){
+            
+            $("#htmltextarea").css("display","block");
+            $("#htmltextarea").toggle();
+            showing++;
+            $("textarea").width(($(window).width()/showing)-20);
+        })
+        $("#javascript").click(function(){
+            
+            $("#javascripttextarea").css("display","block");
+            showing++;
+            $("textarea").width(($(window).width()/showing)-20);
+             $("iframe").width(($(window).width()/showing)-20);
+        })
+        $("#css").click(function(){
+            
+            
+            $("#csstextarea").css("display","block");
+            showing++;
+            $("textarea").width(($(window).width()/showing)-20);
+             $("iframe").width(($(window).width()/showing)-20);
+        })
+         $("#output").click(function(){
+            
+           
+            $("#outputpanel").css("display","block");
+            showing++;
+              $("textarea").width(($(window).width()/showing)-20);
+            $("iframe").width(($(window).width()/showing)-20);
+        })
+     
+*/   
+        
+         
+      $("textarea").on('change keyup paste', function() {
+    $("iframe").contents().find("html").html("<html><head><style type='text/css'>"+$("#csstextarea").val()+"</style></head>"+"<body>"+$("#htmltextarea").val()+"</body></html>");
+document.getElementById("outputpanel").contentWindow.eval($("#javascripttextarea").val());
+});
+   
+    </script>
+ 
+    
+    
+    
+</body>
+</html>
